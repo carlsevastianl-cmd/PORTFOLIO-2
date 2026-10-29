@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumada Carl | Portfolio</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f2f2f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ---------- Header and navigation ---------- */
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 60px 20px 50px;
+        }
+
+        header img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #0077cc;
+            margin-bottom: 15px;
+        }
+
+        header h1 { margin: 0 0 5px; font-size: 2.4rem; }
+        header .role { color: #00ccff; font-size: 1.15rem; margin: 0 0 10px; }
+        header p { max-width: 560px; margin: 0 auto 25px; color: #ccc; }
+
+        .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #0077cc;
+            color: white;
+            border: 2px solid #0077cc;
+        }
+        .btn:hover { background-color: #005fa3; border-color: #005fa3; }
+        .btn.outline { background: transparent; border-color: white; }
+        .btn.outline:hover { background: white; color: #222; }
+
+        nav {
+            background-color: #444;
+            text-align: center;
+            padding: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 6px 12px;
+            display: inline-block;
+        }
+        nav a:hover { color: #00ccff; }
+
+        a:focus-visible, .btn:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 3px solid #00ccff;
+            outline-offset: 2px;
+        }
+
+        /* ---------- Sections ---------- */
+        main { max-width: 950px; margin: 0 auto; padding: 10px 0; }
+
+        section {
+            background-color: white;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #0077cc;
+            margin-top: 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e3e3e3;
+        }
+
+        h3 { margin-top: 0; }
+
+        /* ---------- About ---------- */
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .fact {
+            background: #eeeeee;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border-left: 4px solid #0077cc;
+        }
+        .fact strong { display: block; font-size: 0.85rem; color: #666; }
+
+        /* ---------- Timeline (education) ---------- */
+        .timeline { border-left: 3px solid #0077cc; padding-left: 20px; margin-left: 6px; }
+        .timeline-item { margin-bottom: 20px; position: relative; }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -29px;
+            top: 6px;
+            width: 13px;
+            height: 13px;
+            background: #0077cc;
+            border-radius: 50%;
+        }
+        .timeline-item h3 { margin-bottom: 2px; }
+        .timeline-item .date { color: #666; font-size: 0.9rem; margin: 0 0 5px; }
+
+        /* ---------- Skills ---------- */
+        .skills-container { display: flex; gap: 20px; flex-wrap: wrap; }
+
+        .skill-box {
+            flex: 1;
+            min-width: 260px;
+            background-color: #eeeeee;
+            padding: 18px;
+            border-radius: 5px;
+            border-left: 4px solid #0077cc;
+        }
+
+        .skill { margin-bottom: 14px; }
+        .skill-label { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 4px; }
+        .bar { background: #d5d5d5; border-radius: 10px; height: 10px; overflow: hidden; }
+        .bar span { display: block; height: 100%; background: #0077cc; border-radius: 10px; }
+
+        .skill-box ul { padding-left: 20px; margin: 0; }
+        .skill-box li { margin-bottom: 8px; }
+
+        /* ---------- Karate ---------- */
+        .karate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .karate-card { background: #222; color: white; padding: 18px; border-radius: 8px; }
+        .karate-card h3 { color: #00ccff; margin-bottom: 6px; }
+        .karate-card p { margin: 0; color: #ddd; font-size: 0.95rem; }
+
+        /* ---------- Projects ---------- */
+        .project {
+            background-color: #eeeeee;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 5px;
+        }
+        .project h3 { margin-bottom: 6px; }
+
+        .tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag {
+            background: #0077cc;
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* ---------- Goals ---------- */
+        .goals { padding-left: 20px; }
+        .goals li { margin-bottom: 8px; }
+
+        /* ---------- Contact ---------- */
+        .contact-grid { display: flex; gap: 30px; flex-wrap: wrap; }
+        .contact-info { flex: 1; min-width: 240px; }
+        .contact-info p { margin: 0 0 10px; }
+        .contact-info a { color: #0077cc; }
+
+        form { flex: 1.3; min-width: 280px; }
+        label { display: block; font-weight: bold; margin-bottom: 4px; font-size: 0.95rem; }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 14px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        button.btn { cursor: pointer; font-size: 1rem; }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer a { color: #00ccff; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.9rem; }
+            section { margin: 12px; padding: 20px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="home">
+        <img src="Carl.jpg" alt="Photo of Lumada Carl">
+        <h1>Lumada Carlsevastian</h1>
+        <p class="role">Student &bull; Aspiring Web Developer &bull; Karate Practitioner</p>
+        <p>I build simple, clean websites and I'm working toward a career as a programmer.</p>
+        <div class="buttons">
+            <a class="btn" href="#projects">View My Projects</a>
+            <a class="btn outline" href="#contact">Contact Me</a>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#karate">Karate</a>
+        <a href="#Projects"Projects</a>
+        <a href="#goals">Goals</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I'm Lumada Carlsevastian, but most people call me Carl. I am a student
+            who loves technology, programming, and web development. I enjoy learning new things,
+            solving problems, and turning ideas into working websites.</p>
+            <p>Outside of the computer, I train in karate. It taught me to stay focused, work
+            hard, and keep going even when something is difficult. I bring the same attitude
+            to my coding.</p>
+
+            <div class="facts">
+                <div class="fact"><strong>Location</strong>Laspinas city, Philippines</div>
+                <div class="fact"><strong>Currently</strong>Student</div>
+                <div class="fact"><strong>Interests</strong>Web development, programming, karate</div>
+                <div class="fact"><strong>Languages</strong>English, Filipino</div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>laspiñas national highschool</h3>
+                    <p class="date">Your School Name &bull; 2024 &ndash; Present</p>
+                    <p>Studying technology and programming, and building websites with HTML and CSS.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Holy Rosary national highschool</h3>
+                    <p class="date">holy rosary &bull; 2024 &ndash; r</p>
+                    <p>none.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>My Skills</h2>
+
+            <div class="skills-container">
+                <div class="skill-box">
+                    <h3>Hard Skills</h3>
+
+                    <div class="skill">
+                        <div class="skill-label"><span>HTML</span><span>Intermediate</span></div>
+                        <div class="bar"><span style="width: 75%"></span></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-label"><span>CSS</span><span>Intermediate</span></div>
+                        <div class="bar"><span style="width: 70%"></span></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-label"><span>Responsive design</span><span>Beginner</span></div>
+                        <div class="bar"><span style="width: 50%"></span></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-label"><span>JavaScript</span><span>Learning</span></div>
+                        <div class="bar"><span style="width: 30%"></span></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-label"><span>Computer and internet research</span><span>Good</span></div>
+                        <div class="bar"><span style="width: 80%"></span></div>
+                    </div>
+                </div>
+
+                <div class="skill-box">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li><strong>Karate:</strong> fitness, focus, and self-control</li>
+                        <li><strong>Discipline:</strong> training regularly and following through</li>
+                        <li><strong>Perseverance:</strong> not giving up when something is hard</li>
+                        <li><strong>Respect:</strong> for teachers, teammates, and others</li>
+                        <li><strong>Teamwork:</strong> learned from training with a group</li>
+                        <li><strong>Communication:</strong> explaining ideas clearly</li>
+                        <li><strong>Time management:</strong> balancing school and training</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="karate">
+            <h2>Karate</h2>
+            <p>Karate is a big part of who I am. Here is how it shapes the way I work and learn.</p>
+
+            <div class="karate-grid">
+                <div class="karate-card">
+                    <h3>Belt Rank</h3>
+                    <p>White belt.</p>
+                </div>
+                <div class="karate-card">
+                    <h3>Years of Training</h3>
+                    <p>1yesr of training .</p>
+                </div>
+                <div class="karate-card">
+                    <h3>Achievements</h3>
+                    <p>none.</p>
+                </div>
+                <div class="karate-card">
+                    <h3>What I Learned</h3>
+                    <p>Practice every day, respect everyone, and never quit after a mistake.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+
+            <div class="project">
+                <h3>Personal Portfolio Website</h3>
+                <p>The website you are looking at. I designed and coded it myself to show my
+                skills and background.</p>
+                <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+            </div>
+
+            
+                <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+            </div>
+
+                <div class="tags"><span class="tag">Add tools used</span></div>
+            </div>
+        </section>
+
+        <section id="goals">
+            <h2>Goals</h2>
+            <ul class="goals">
+                <li>Learn JavaScript and build interactive websites.</li>
+                <li>Learn a backend language such as Python or PHP.</li>
+                <li>Finish my studies and become a successful programmer.</li>
+                <li>Keep training in karate and reach the next belt level.</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p>I'd love to hear from you. Send me a message about a project,
+                    a question, or just to say hello.</p>
+                    <p><strong>Email:</strong> <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+                    <p><strong>Location:</strong> Antipolo, Philippines</p>
+                    <p><strong>GitHub:</strong> <a href="#">your-username</a></p>
+                </div>
+
+                <!-- This form opens the visitor's email app. Replace the email address. -->
+                <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Your email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit" class="btn">Send message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Lumada Carlsevastian. All rights reserved.</p>
+        <p><a href="#home">Back to top</a></p>
+    </footer>
+
+</body>
+</html>
